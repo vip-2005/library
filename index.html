@@ -343,110 +343,6 @@
             color: #fde047;
         }
 
-        /* Review & Message Developer Section */
-        .contact-section {
-            max-width: 650px;
-            margin: 60px auto 30px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 22px;
-            padding: 30px 25px;
-            backdrop-filter: blur(14px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            text-align: center;
-        }
-
-        .contact-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fde047;
-            margin-bottom: 6px;
-        }
-
-        .contact-desc {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            margin-bottom: 22px;
-        }
-
-        .star-rating {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .star-rating i {
-            color: #475569;
-            transition: color 0.2s;
-        }
-
-        .star-rating i.active {
-            color: #fde047;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            color: #cbd5e1;
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            padding: 12px 16px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            border-color: #fde047;
-            box-shadow: 0 0 15px rgba(253, 224, 71, 0.2);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 90px;
-        }
-
-        .btn-submit-msg {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: var(--gold-gradient);
-            color: #0f172a;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-            margin-top: 10px;
-        }
-
-        .btn-submit-msg:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 22px rgba(245, 158, 11, 0.5);
-        }
-
         footer {
             text-align: center;
             margin-top: 55px;
@@ -723,78 +619,14 @@
 
     </div>
 
-    <!-- Review & Message Developer Section -->
-    <div class="contact-section">
-        <h2 class="contact-title"><i class="fa-solid fa-comments"></i> Message Developer / Review</h2>
-        <p class="contact-desc">अपनी राय दें या किसी भी नई किताब की मांग के लिए सीधे डेवलपर को संदेश भेजें:</p>
-
-        <!-- Star Rating -->
-        <div class="star-rating" id="starContainer">
-            <i class="fa-solid fa-star active" onclick="setRating(1)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(2)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(3)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(4)"></i>
-            <i class="fa-solid fa-star active" onclick="setRating(5)"></i>
-        </div>
-
-        <div class="form-group">
-            <label for="userName">आपका नाम (Your Name)</label>
-            <input type="text" id="userName" class="form-input" placeholder="उदा. आपका नाम">
-        </div>
-
-        <div class="form-group">
-            <label for="userMsg">आपका संदेश / किताब की डिमांड (Your Message / Book Request)</label>
-            <textarea id="userMsg" class="form-textarea" placeholder="लिखें कि साइट कैसी लगी या कौन सी किताब चाहिए..."></textarea>
-        </div>
-
-        <button type="button" class="btn-submit-msg" onclick="sendMessage()">
-            <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Send Message to Developer
-        </button>
-    </div>
-
     <!-- Footer -->
     <footer>
         <p>© Devi Ji Digital Library • All Rights Reserved</p>
     </footer>
 
-    <!-- Interactive Filters, Search & Message Script -->
+    <!-- Interactive Filters & Search Script -->
     <script>
         let currentCategory = 'all';
-        let currentRating = 5;
-
-        // Rating Stars Handler
-        function setRating(rating) {
-            currentRating = rating;
-            const stars = document.querySelectorAll('#starContainer i');
-            stars.forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-        }
-
-        // Send Message Function (WhatsApp Direct to 9068627209)
-        function sendMessage() {
-            const name = document.getElementById('userName').value.trim() || 'Reader';
-            const msg = document.getElementById('userMsg').value.trim();
-
-            if (!msg) {
-                alert('कृपया अपना संदेश या रिव्यू लिखें!');
-                return;
-            }
-
-            // WhatsApp Message Formatting
-            const starsText = '⭐'.repeat(currentRating);
-            const fullText = `📚 *New Review / Message on Devi Ji Digital Library*\n\n👤 *Name:* ${name}\n✨ *Rating:* ${starsText} (${currentRating}/5)\n💬 *Message:* ${msg}`;
-
-            // Developer WhatsApp Number (919068627209)
-            const devNumber = '919068627209'; 
-
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=${devNumber}&text=${encodeURIComponent(fullText)}`;
-            window.open(whatsappUrl, '_blank');
-        }
 
         // Category Filter
         function filterCategory(cat, element) {
